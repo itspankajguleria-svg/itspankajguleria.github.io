@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pankaj Guleria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'SF Display';
+    src: local('-apple-system'), local('BlinkMacSystemFont'), local('SF Pro Display');
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --card: #111111;
+    --card-hover: #161616;
+    --text: #f5f5f7;
+    --text-secondary: #86868b;
+    --text-tertiary: #6e6e73;
+    --blue: #2997ff;
+    --blue-hover: #2381d8;
+    --divider: rgba(255,255,255,0.08);
+    --font: 'SF Display', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+
+  nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    transition: color 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+
+  nav .nav-name {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: heroFade 1s ease forwards 0.3s;
+  }
+
+  .hero h1 {
+    font-size: clamp(4rem, 12vw, 7.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(180deg, #f5f5f7 0%, #86868b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: heroFade 1s ease forwards 0.5s;
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    max-width: 480px;
+    opacity: 0;
+    animation: heroFade 1s ease forwards 0.7s;
+  }
+
+  .hero-links {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    opacity: 0;
+    animation: heroFade 1s ease forwards 0.9s;
+  }
+
+  .hero-link {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: opacity 0.2s;
+  }
+
+  .hero-link:hover { opacity: 0.8; }
+
+  .hero-link .arrow {
+    font-size: 1.3rem;
+    transition: transform 0.2s;
+  }
+
+  .hero-link:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Sections ── */
+  .section {
+    padding: 7rem 2rem;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 7rem 0;
+  }
+
+  .section-divider {
+    max-width: 980px;
+    margin: 0 auto;
+    height: 0.5px;
+    background: var(--divider);
+  }
+
+  /* ── About ── */
+  .about-container {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-statement {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text);
+  }
+
+  .about-statement .dim {
+    color: var(--text-secondary);
+  }
+
+  .about-body {
+    margin-top: 2.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-chips {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .chip {
+    padding: 0.45rem 0.9rem;
+    background: var(--card);
+    border: 0.5px solid var(--divider);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .chip.active {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  /* ── Bento Clients ── */
+  .clients-header {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .clients-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .clients-headline {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .clients-headline .dim { color: var(--text-secondary); }
+
+  .bento {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .bento-card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 130px;
+    border: 0.5px solid rgba(255,255,255,0.04);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(41,151,255,0.04) 100%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    border-radius: 18px;
+  }
+
+  .bento-card:hover::before { opacity: 1; }
+
+  .bento-card:hover {
+    transform: scale(1.02);
+    border-color: rgba(255,255,255,0.1);
+    background: var(--card-hover);
+  }
+
+  .bento-card .card-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bento-card .card-type {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    margin-top: 0.25rem;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bento-card.wide {
+    grid-column: span 2;
+  }
+
+  /* ── Contact ── */
+  .contact-container {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .contact-headline {
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .contact-headline .dim { color: var(--text-secondary); }
+
+  .contact-desc {
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    font-size: 1.15rem;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 400;
+    transition: opacity 0.2s;
+  }
+
+  .contact-cta:hover { opacity: 0.8; }
+
+  .contact-cta .arrow {
+    font-size: 1.3rem;
+    transition: transform 0.2s;
+  }
+
+  .contact-cta:hover .arrow { transform: translateX(3px); }
+
+  .contact-form-wrap {
+    margin-top: 3.5rem;
+    text-align: left;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    background: var(--card);
+    border: 0.5px solid var(--divider);
+    color: var(--text);
+    padding: 0.85rem 1rem;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 400;
+    outline: none;
+    border-radius: 12px;
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--blue);
+    background: #0d0d0d;
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .contact-form button {
+    align-self: center;
+    background: var(--blue);
+    border: none;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .contact-form button:hover {
+    background: var(--blue-hover);
+    transform: scale(1.02);
+  }
+
+  .contact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .social-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .social-link:hover { color: var(--text); }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+  }
+
+  footer a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  /* ── Scroll reveal ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in.delay-1 { transition-delay: 0.1s; }
+  .fade-in.delay-2 { transition-delay: 0.2s; }
+  .fade-in.delay-3 { transition-delay: 0.3s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    nav { gap: 1.25rem; padding: 0 1rem; }
+    nav a { font-size: 0.7rem; }
+    .section { padding: 5rem 1.5rem; }
+    .section-full { padding: 5rem 0; }
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 1.5rem;
+      gap: 0.75rem;
+    }
+    .bento-card.wide { grid-column: span 2; }
+    .bento-card { min-height: 100px; padding: 1.5rem 1.25rem; }
+    .clients-header { padding: 0 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento-card.wide { grid-column: span 1; }
+    .form-row { grid-template-columns: 1fr; }
+    nav { gap: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-name">Pankaj Guleria</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">International Business Management</p>
+    <h1>Pankaj Guleria.</h1>
+    <p class="hero-sub">Student. Strategist. Based in London, building a future in global business.</p>
+    <div class="hero-links">
+      <a href="#about" class="hero-link">Learn more <span class="arrow">›</span></a>
+      <a href="mailto:office@pankajguleria.work" class="hero-link">Get in touch <span class="arrow">›</span></a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="about-container fade-in">
+      <p class="about-label">About</p>
+      <h2 class="about-statement">
+        Passionate about where <span class="dim">business meets strategy,</span> and strategy meets <span class="dim">global impact.</span>
+      </h2>
+      <p class="about-body">
+        International Business Management student based in London. Focused on understanding diverse markets, building cross-industry connections, and bringing an analytical yet creative approach to every challenge.
+      </p>
+      <div class="about-chips fade-in delay-2">
+        <span class="chip active">Strategy</span>
+        <span class="chip">Global Markets</span>
+        <span class="chip">Analytics</span>
+        <span class="chip active">Leadership</span>
+        <span class="chip">Innovation</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Experience -->
+  <section class="section-full" id="experience">
+    <div class="clients-header fade-in">
+      <p class="clients-label">Experience</p>
+      <h2 class="clients-headline">
+        Collaborations <span class="dim">that shape perspective.</span>
+      </h2>
+    </div>
+    <div class="bento fade-in delay-1">
+      <div class="bento-card wide">
+        <span class="card-name">Deloitte</span>
+        <span class="card-type">Consulting</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">HSBC</span>
+        <span class="card-type">Banking</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">Unilever</span>
+        <span class="card-type">Consumer Goods</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">McKinsey & Co</span>
+        <span class="card-type">Consulting</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">Barclays</span>
+        <span class="card-type">Finance</span>
+      </div>
+      <div class="bento-card wide">
+        <span class="card-name">Goldman Sachs</span>
+        <span class="card-type">Investment Banking</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">PwC</span>
+        <span class="card-type">Advisory</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">Accenture</span>
+        <span class="card-type">Technology</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">Shell</span>
+        <span class="card-type">Energy</span>
+      </div>
+      <div class="bento-card">
+        <span class="card-name">LVMH</span>
+        <span class="card-type">Luxury</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="contact-container">
+      <p class="contact-label fade-in">Contact</p>
+      <h2 class="contact-headline fade-in delay-1">
+        Let's build <span class="dim">something together.</span>
+      </h2>
+      <p class="contact-desc fade-in delay-2">Open to opportunities, collaborations, and conversations about business, strategy, and everything in between.</p>
+      <a href="mailto:office@pankajguleria.work" class="contact-cta fade-in delay-3">
+        office@pankajguleria.work <span class="arrow">›</span>
+      </a>
+
+      <div class="contact-form-wrap fade-in delay-2">
+        <form class="contact-form" onsubmit="event.preventDefault(); let b=this.querySelector('button'); b.textContent='Sent!'; b.style.background='#30d158'; setTimeout(()=>{b.textContent='Send Message'; b.style.background='';}, 2000);">
+          <div class="form-row">
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+          </div>
+          <input type="email" placeholder="Email" required>
+          <input type="text" placeholder="Subject">
+          <textarea placeholder="Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-socials fade-in delay-3">
+        <a href="https://www.linkedin.com/in/pankaj-guleria-54a977329" target="_blank" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">X</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <span>Copyright &copy; 2026 Pankaj Guleria. All rights reserved.</span>
+    <span>London, United Kingdom</span>
+  </footer>
+
+  <script>
+    const faders = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    faders.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
