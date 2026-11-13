@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pankaj Guleria</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -80,10 +84,22 @@
   }
 
   nav .nav-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--text);
     font-weight: 600;
     font-size: 0.8rem;
   }
+
+  nav .nav-logo {
+    width: 22px;
+    height: 22px;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  nav .nav-name:hover .nav-logo { transform: rotate(-8deg) scale(1.06); }
 
   /* ── Hero ── */
   .hero {
@@ -541,7 +557,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="#" class="nav-name">Pankaj Guleria</a>
+    <a href="#" class="nav-name"><img src="assets/logo.svg" alt="" class="nav-logo" width="22" height="22">Pankaj Guleria</a>
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
